@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <set>
+#include <map>
 using WORD = string; //for each word in the text file
 using WORD_LIST = set<WORD>; //for each unique word in the text file
 using WORD_FREQ_LIST = map<char, int>; //number of times each letter was used
@@ -39,5 +41,9 @@ WORD getNextWord(DICTION& d) {
 }
 int main()
 {
-    cout << "Hello World!\n";
+    DICTION d{ {0,0,0} };
+    buildDictionary(d);
+    showStats(d);
+    drawHistograms(d);
+    return 0;
 }
