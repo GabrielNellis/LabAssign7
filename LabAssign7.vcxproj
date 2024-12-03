@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="stats.cpp" />
     <ClCompile Include="LabAssign7.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="text_file.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
