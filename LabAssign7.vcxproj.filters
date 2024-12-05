@@ -18,7 +18,7 @@
     <ClCompile Include="LabAssign7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stats.cpp">
+    <ClCompile Include="histograms.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,9 +5,9 @@
 #include <queue>
 #include <set>
 #include <map>
-#include <text_file.txt>
-#include <stats.cpp>
-using WORD = string; //for each word in the text file
+#include "histograms.cpp"
+#include "text_file.txt"
+using WORD = std::string; //for each word in the text file
 using WORD_LIST = set<WORD>; //for each unique word in the text file
 using WORD_FREQ_LIST = map<char, int>; //number of times each letter was used
 using FREQ_WORD_LIST = multimap<int, WORD>; //number of times each word was used
@@ -16,6 +16,9 @@ using LONGEST = priority_queue<WORD>; //used for the histogram to help with the 
 //since histogram is going to be horizontal, like the example
 using namespace std;
 //everything needs to be sorted ALPHABETICALLY
+#endif LabAssign7
+vector<std::string> test{"hello", "hi", "test", "test2", "test"};
+
 struct DICTION {
     COUNTER stats;
     WORD_LIST words;
@@ -23,16 +26,19 @@ struct DICTION {
     FREQ_WORD_LIST freqWord;
     LONGEST longWord;
 }; 
-#endif LabAssign7
-vector<string> test{"hello", "hi", "test", "test2", "test"};
 
 WORD getNextWord(DICTION& d) {
     WORD w;
     char ch;
     bool inWord = false;
-    for (char ch = 'a'; ch != 'z'; ch++) {
-        
+    WORD_FREQ_LIST m;
+    for (char c = 'a'; c != 'z'; c++) { //loads the map with each char from a-z
+        m.insert({ c, 0 });
     }
+    for (char c = 'A'; c != 'Z'; c++) { //loads the map with each char from A-Z (since the ASCII is 32 bits off)
+        m.insert({ c,0 });
+    }
+    d.wordFreq = m;
     std::cin.get(ch); //initializes the while loop
     while (!std::cin.eof()) //while ???
     {
@@ -49,9 +55,9 @@ WORD getNextWord(DICTION& d) {
 
 void showStats(DICTION d) {
     cout << "Dictionary Stats \n \n";
-    cout << "Number of Letters: ";
-    cout << "Number of Words  : ";
-    cout << "Number of Lines  : ";
+    cout << "Number of Letters: " << d.stats.first << "\n";
+    cout << "Number of Words  : " << d.stats.second << "\n";
+    cout << "Number of Lines  : " << d.stats.third << "\n";
 }
 
 DICTION buildDictionary(DICTION& d) {
@@ -68,3 +74,4 @@ int main()
     drawHistograms(d);
     return 0;
 }
+//for auto cmp=[](std::string left, std::string right){return left.length()<right.length()};
