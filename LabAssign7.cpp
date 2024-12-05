@@ -17,7 +17,7 @@ using LONGEST = priority_queue<WORD>; //used for the histogram to help with the 
 using namespace std;
 //everything needs to be sorted ALPHABETICALLY
 #endif LabAssign7
-vector<std::string> test{"hello", "hi", "test", "test2", "test"};
+vector<std::string> test{"this sh0uld b33 the l0ngest thing h3re w!th 16 words and 65 chars"};
 
 struct DICTION {
     COUNTER stats;
@@ -31,15 +31,14 @@ WORD getNextWord(DICTION& d) {
     WORD w;
     char ch;
     bool inWord = false;
-    WORD_FREQ_LIST m;
     for (char c = 'a'; c != 'z'; c++) { //loads the map with each char from a-z
-        m.insert({ c, 0 });
+        d.wordFreq.insert({ c, 0 });
     }
     for (char c = 'A'; c != 'Z'; c++) { //loads the map with each char from A-Z (since the ASCII is 32 bits off)
-        m.insert({ c,0 });
+        d.wordFreq.insert({ c,0 });
     }
-    d.wordFreq = m;
     std::cin.get(ch); //initializes the while loop
+    d.stats.first++;
     while (!std::cin.eof()) //while ???
     {
         if (isalpha(ch)) // is ch in [A-Z, a-z]
@@ -47,17 +46,15 @@ WORD getNextWord(DICTION& d) {
             w.push_back(ch);
             inWord = true;
         }
-        else if (inWord) return w;
+        else if (inWord) { //if it was in a word until now
+            d.stats.second++;
+            return w;
+        }
+        else if (ch == '\n') d.stats.third++; //checking for if it's a new line
         std::cin.get(ch); //keeps the loop going for the length of the text file
+        d.stats.first++;
     }
     return w;
-}
-
-void showStats(DICTION d) {
-    cout << "Dictionary Stats \n \n";
-    cout << "Number of Letters: " << d.stats.first << "\n";
-    cout << "Number of Words  : " << d.stats.second << "\n";
-    cout << "Number of Lines  : " << d.stats.third << "\n";
 }
 
 DICTION buildDictionary(DICTION& d) {
@@ -68,10 +65,12 @@ DICTION buildDictionary(DICTION& d) {
 
 int main()
 {
-    DICTION d{ {0,0,0} };
+    DICTION d{ {0,0,0} }; //???
+    d.stats = { 0,0,0 }; //loading stats to be all 0
     buildDictionary(d);
+    drawLetters(d);
     showStats(d);
-    drawHistograms(d);
+    drawWords(d);
     return 0;
 }
 //for auto cmp=[](std::string left, std::string right){return left.length()<right.length()};
