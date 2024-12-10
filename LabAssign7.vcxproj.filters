@@ -18,11 +18,10 @@
     <ClCompile Include="LabAssign7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="histograms.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="text_file.txt" />
+    <Text Include="text_file.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

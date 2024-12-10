@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="histograms.cpp" />
     <ClCompile Include="LabAssign7.cpp" />
   </ItemGroup>
   <ItemGroup>
